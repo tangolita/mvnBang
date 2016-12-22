@@ -1,24 +1,31 @@
 package com.julia.bang.data;
 
 import com.julia.bang.game.Game;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.HashMap;
 
 /**
  * Created by Юлия on 18.12.2016.
  */
-@Repository
+@Component
 public class GamesRepository {
 
+    private  HashMap<Integer, Game> listOfGames;
 
-    private static HashMap<Integer, Game> listOfGames = new HashMap<Integer, Game>();
+    public GamesRepository() {
+        this.listOfGames = new HashMap<Integer, Game>();
+    }
 
-    public static void addGame(Integer gameId, Game game){
-        listOfGames.put(gameId, game);
+    public HashMap<Integer, Game> getListOfGames() {
+        return listOfGames;
     }
-    public static Game getGame(Integer gameId){
-        return listOfGames.get(gameId);
+    public void setListOfGames(HashMap<Integer, Game> listOfGames) {
+        this.listOfGames = listOfGames;
     }
+    public void addGame(int ind, Game game ){
+        listOfGames.put(ind, game);
+    }
+
 }
